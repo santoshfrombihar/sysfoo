@@ -1,29 +1,28 @@
-pipeline{
-  agent any
+pipeline {
+    agent any
 
-  tools{
-    maven 'Maven 3.9.11'
-   }
-   
-   stages{
-     stage('build'){
-       steps{
-         sh 'mvn compile'
+    tools {
+        maven 'Maven 3.9.11'
+    }
+
+    stages {
+
+        stage('Build') {
+            steps {
+                sh 'mvn compile'
+            }
         }
-      }
 
-stage('test'){
-       steps{
-         sh 'mvn clean test'
+        stage('Test') {
+            steps {
+                sh 'mvn clean test'
+            }
         }
-      }
 
-
-stage('package'){
-       steps{
-         sh 'package -DskipTests'
+        stage('Package') {
+            steps {
+                sh 'mvn package -DskipTests'
+            }
         }
-      }
-      
     }
 }
